@@ -4,7 +4,8 @@
   "description": "Skeleton for building microservices based on azure service bus",
   "main": "no",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --captureExceptions",
+    "test-ci": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --noColor --junitreport --output test-reports --forceexit --captureExceptions",
   },
   "keywords": [
     "azure",
@@ -24,10 +25,12 @@
     "seneca-servicebus-transport": "^0.1.5-dev",
     "seriate": "^0.8.0"
   },
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "jasmine-node": "^1.14.5",
+    "seriate.mock": "0.0.1"
+  },
   "engines": {
     "node": "6.6"
-  },
-  "devDependencies": {
-    "seriate.mock": "0.0.1"
   }
 }
