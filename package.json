@@ -17,11 +17,12 @@
   "author": "Aureliano",
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.16.6",
     "seneca": "^3.2.2",
     "seneca-servicebus-transport": "^0.1.5-dev",
     "seriate": "^0.8.0"
   },
   "engines": {
-    "node":"6.6"
+    "node": "6.6"
   }
 }

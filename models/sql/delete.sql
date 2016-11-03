@@ -1,0 +1,1 @@
+DELETE FROM [dbo].[Temp] WHERE Id = @QueryId

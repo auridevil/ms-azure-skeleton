@@ -34,18 +34,18 @@ module.exports = function (options) {
     // init
   });
 
-  // Models loading, form the models path
-  fs.readdirSync(MODELS_PATH).forEach(function (file) {
-    var f = path.basename(file, '.js');
-    console.log('[', SRV_NAME, ']', 'loading model', f);
-    var opts = {
-      srvname: SRV_NAME,
-      mdlname: f,
-      seneca: seneca,
-      dbconfig: dbconfig
-    };
-    require(path.join(MODELS_PATH, file))(opts);
-  });
+  // // Models loading, form the models path
+  // fs.readdirSync(MODELS_PATH).forEach(function (file) {
+  //   var f = path.basename(file, '.js');
+  //   console.log('[', SRV_NAME, ']', 'loading model', f);
+  //   var opts = {
+  //     srvname: SRV_NAME,
+  //     mdlname: f,
+  //     seneca: seneca,
+  //     dbconfig: dbconfig
+  //   };
+  //   require(path.join(MODELS_PATH, file))(opts);
+  // });
 
   // Microservices actions
   fs.readdirSync(ACTS_PATH).forEach(function (file) {
@@ -54,7 +54,8 @@ module.exports = function (options) {
     var opts = {
       srvname: SRV_NAME,
       actname: f,
-      seneca: seneca
+      seneca: seneca,
+      dbconfig: dbconfig
     };
     // add a seneca action, it will respond on every message that will match role and cmd.
     // role is the microservice name, while cmd is the module file name which contains the action
