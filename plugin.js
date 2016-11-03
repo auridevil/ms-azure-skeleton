@@ -31,21 +31,8 @@ module.exports = function (options) {
   seneca.add({
     init: SRV_NAME
   }, function (args, done) {
-    // init
+    // init step
   });
-
-  // // Models loading, form the models path
-  // fs.readdirSync(MODELS_PATH).forEach(function (file) {
-  //   var f = path.basename(file, '.js');
-  //   console.log('[', SRV_NAME, ']', 'loading model', f);
-  //   var opts = {
-  //     srvname: SRV_NAME,
-  //     mdlname: f,
-  //     seneca: seneca,
-  //     dbconfig: dbconfig
-  //   };
-  //   require(path.join(MODELS_PATH, file))(opts);
-  // });
 
   // Microservices actions
   fs.readdirSync(ACTS_PATH).forEach(function (file) {
@@ -57,10 +44,13 @@ module.exports = function (options) {
       seneca: seneca,
       dbconfig: dbconfig
     };
+
     // add a seneca action, it will respond on every message that will match role and cmd.
     // role is the microservice name, while cmd is the module file name which contains the action
     var action = ['role:', SRV_NAME, ',cmd:', f].join('');
     seneca.add(action, require(path.join(ACTS_PATH, file))(opts));
+
+    // register the listen, * command is not allowed in azure service bus
     seneca.listen({
       type: TYPE, pin: ['role:', SRV_NAME, ',cmd:', f].join(''),
       connection_string: TRANSPORT_CONNECTION

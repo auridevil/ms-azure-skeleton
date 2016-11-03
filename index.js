@@ -12,7 +12,6 @@ const seneca = require('seneca')({
   }
 });
 
-
 seneca.use('seneca-servicebus-transport')
   .use('./plugin.js', {
     srvname: SRV_NAME,
