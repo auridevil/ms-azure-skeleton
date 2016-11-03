@@ -1,0 +1,27 @@
+{
+  "name": "ms-azure-skeleton",
+  "version": "0.0.1",
+  "description": "Skeleton for building microservices based on azure service bus",
+  "main": "no",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "azure",
+    "servicebus",
+    "webapp",
+    "microservices",
+    "seneca",
+    "mssql"
+  ],
+  "author": "Aureliano",
+  "license": "MIT",
+  "dependencies": {
+    "seneca": "^3.2.2",
+    "seneca-servicebus-transport": "^0.1.5-dev",
+    "seriate": "^0.8.0"
+  },
+  "engines": {
+    "node":"6.6"
+  }
+}
