@@ -2,20 +2,11 @@
   "name": "ms-azure-skeleton",
   "version": "0.0.1",
   "description": "Skeleton for building microservices based on azure service bus",
-  "main": "no",
   "scripts": {
-    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --captureExceptions",
-    "test-ci": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --noColor --junitreport --output test-reports --forceexit --captureExceptions",
+    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --captureExceptions api-gw/ microservice/",
+    "test-ci": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --noColor --junitreport --output test-reports --forceexit --captureExceptions api-gw/ microservice/"
   },
-  "keywords": [
-    "azure",
-    "servicebus",
-    "webapp",
-    "microservices",
-    "seneca",
-    "mssql"
-  ],
-  "author": "Aureliano",
+  "author": "Aureliano Bergese aureliano.bergese-github@gmail.com",
   "license": "MIT",
   "dependencies": {
     "asynquence": "^0.9.0",
@@ -32,5 +23,17 @@
   },
   "engines": {
     "node": "6.6"
+  },
+  "keywords": [
+    "azure",
+    "servicebus",
+    "webapp",
+    "microservices",
+    "seneca",
+    "mssql"
+  ],
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/auridevil/ms-azure-skeleton"
   }
 }
