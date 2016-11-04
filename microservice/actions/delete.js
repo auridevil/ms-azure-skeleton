@@ -4,7 +4,7 @@
  * this is an action for the microservice
  */
 
-const model = require('../models/model');
+var model = require('../models/model');
 
 
 module.exports = function (options) {
@@ -12,6 +12,8 @@ module.exports = function (options) {
   const seneca = options.seneca;
   const log = seneca && seneca.log || console;
   const dbConfig = options.dbconfig;
+  // mocking purposes
+  model = options.model || model;
 
   return function (args, done) {
     log.info(options.srvname, options.actname);

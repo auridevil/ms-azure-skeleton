@@ -143,5 +143,6 @@ module.exports = {
   getAll: getAll,
   getById: getById,
   insertNew: insertNew,
-  updateById: updateById
+  updateById: updateById,
+  sql: sql
 }
