@@ -20,7 +20,7 @@ module.exports = function (options) {
 
     var defaultResponse = {
       content: null,
-      statusCode: 204
+      statusCode: 404
     };
 
     args = args || {};
