@@ -8,7 +8,7 @@
 const TABLE_NAME = 'Temp' || process.env.DB_ENTITY_NAME;
 
 const sql = require('seriate');
-const _ = require('lodash/collection');
+const _ = require('lodash');
 
 const deleteById = function (id, dbconfig, done) {
   const stepname = 'delete';
@@ -84,15 +84,16 @@ const insertNew = function (obj, dbconfig, done) {
   let values = _.values(obj).join(',');
 
   let query = ['INSERT INTO [dbo].[', TABLE_NAME, '] (', fields, ') VALUES (', values, ')'].join('');
+  const stepname = 'insert';
 
   // execute
   return sql.getPlainContext(dbconfig)
-    .step('insert', {
+    .step(stepname, {
       query: query,
       params: {}
     })
     .end(function (data) {
-      done(null, data || {success: true});
+      done(null, data? data[stepname] : {success: true});
     })
     .error(function (err) {
       done(err);

@@ -49,7 +49,7 @@ describe('generic microservice delete handler', function () {
       id: objs[0].Id
     };
 
-    var spy = spyOn(model, 'deleteById').andCallThrough();
+    spyOn(model, 'deleteById').andCallThrough();
 
     action(args, function (err, out) {
 
