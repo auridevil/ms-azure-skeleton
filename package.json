@@ -4,6 +4,7 @@
   "description": "Skeleton for building microservices based on azure service bus",
   "scripts": {
     "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --captureExceptions api-gw/ microservice/",
+    "test-dbg":"node $NODE_DEBUG_OPTION node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --captureExceptions api-gw/ microservice/",
     "test-ci": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --noColor --junitreport --output test-reports --forceexit --captureExceptions api-gw/ microservice/"
   },
   "author": "Aureliano Bergese aureliano.bergese-github@gmail.com",
@@ -14,12 +15,12 @@
     "lodash": "^4.16.6",
     "seneca": "^3.2.2",
     "seneca-servicebus-transport": "^0.1.5-dev",
-    "seriate": "^0.8.0"
+    "seriate": "git://github.com/auridevil/seriate.git"
   },
   "devDependencies": {
     "jasmine": "^2.5.2",
     "jasmine-node": "^1.14.5",
-    "seriate.mock": "0.0.1"
+    "seriate.mock": "git://github.com/auridevil/seriate.mock.git"
   },
   "engines": {
     "node": "6.6"

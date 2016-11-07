@@ -11,8 +11,9 @@ const sql = require('seriate');
 const _ = require('lodash/collection');
 
 const deleteById = function (id, dbconfig, done) {
+  const stepname = 'delete';
   return sql.getPlainContext(dbconfig)
-    .step('delete', {
+    .step(stepname, {
       query: sql.fromFile('./sql/delete.sql'),
       params: {
         QueryId: {
@@ -22,10 +23,9 @@ const deleteById = function (id, dbconfig, done) {
       }
     })
     .end(function (data) {
-      done(null, {
-        pid: process.pid,
-        data: data || {success: true}
-      });
+      done(null,
+        data ? data[stepname] : {success: true}
+      );
     })
     .error(function (err) {
       done(err);
@@ -33,18 +33,19 @@ const deleteById = function (id, dbconfig, done) {
 };
 
 const getAll = function (dbconfig, done) {
+  const stepname = 'getall';
   return sql.getPlainContext(dbconfig)
-    .step('getall', {
+    .step(stepname, {
       query: sql.fromFile('./sql/get.sql'),
       params: {
         multiple: true
       }
     })
     .end(function (data) {
-      done(null, {
-        pid: process.pid,
-        data: data
-      });
+      done(
+        null,
+        data ? data[stepname] : data
+      );
     })
     .error(function (err) {
       done(err);
@@ -55,9 +56,10 @@ const getById = function (id, dbconfig, done) {
   if (!id) {
     return getAll(dbconfig, done);
   } else {
+    const stepname = 'getbyid';
     return sql.getPlainContext(dbconfig)
-      .step('getbyid', {
-        query: sql.fromFile('./sql/getbydid.sql'),
+      .step(stepname, {
+        query: sql.fromFile('./sql/getbyid.sql'),
         params: {
           QueryId: {
             type: sql.INT,
@@ -67,10 +69,7 @@ const getById = function (id, dbconfig, done) {
         }
       })
       .end(function (data) {
-        done(null, {
-          pid: process.pid,
-          data: data
-        });
+        done(null, data ? data[stepname] : data);
       })
       .error(function (err) {
         done(err);
@@ -93,10 +92,7 @@ const insertNew = function (obj, dbconfig, done) {
       params: {}
     })
     .end(function (data) {
-      done(null, {
-        pid: process.pid,
-        data: data || {success: true}
-      });
+      done(null, data || {success: true});
     })
     .error(function (err) {
       done(err);
@@ -145,4 +141,5 @@ module.exports = {
   insertNew: insertNew,
   updateById: updateById,
   sql: sql
-}
+};
+

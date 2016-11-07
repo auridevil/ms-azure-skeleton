@@ -86,7 +86,7 @@ describe('generic microservice get handler', function () {
       var obj = out.content;
       expect(util.isArray(obj)).toBe(true);
       expect(obj.length).toBe(1);
-      expect(obj[0].Id).toEqual(newObjs[0]);
+      expect(obj[0].Id).toEqual(newObjs[0].Id);
 
       done();
     });
