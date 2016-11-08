@@ -27,10 +27,10 @@ module.exports = function (options) {
     if (args.id && args.body) {
 
       ASQ((stepdone)=> {
-        model.updateById(args.id, args.body, dbConfig, stepdone);
-      }).then((result, stepdone)=> {
-        model.getById(args.id, dbConfig, stepdone);
-      }).then((data, stepdone)=> {
+        model.updateById(args.id, args.body, dbConfig, stepdone.errfcb);
+      }).then((stepdone, results)=> {
+        model.getById(args.id, dbConfig, stepdone.errfcb);
+      }).then((stepdone, data)=> {
         done(null, data ? {
           content: data,
           statusCode: 200

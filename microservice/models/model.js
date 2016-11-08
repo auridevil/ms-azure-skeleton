@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * This is the proto model file, to access the db
+ * This is the proto model file, that access the db
  */
 
 
@@ -11,6 +11,7 @@ const sql = require('seriate');
 const _ = require('lodash');
 
 const deleteById = function (id, dbconfig, done) {
+
   const stepname = 'delete';
   return sql.getPlainContext(dbconfig)
     .step(stepname, {
@@ -33,6 +34,7 @@ const deleteById = function (id, dbconfig, done) {
 };
 
 const getAll = function (dbconfig, done) {
+
   const stepname = 'getall';
   return sql.getPlainContext(dbconfig)
     .step(stepname, {
@@ -93,7 +95,7 @@ const insertNew = function (obj, dbconfig, done) {
       params: {}
     })
     .end(function (data) {
-      done(null, data? data[stepname] : {success: true});
+      done(null, data ? data[stepname] : {success: true});
     })
     .error(function (err) {
       done(err);
@@ -107,13 +109,14 @@ const updateById = function (id, updateObj, dbconfig, done) {
     updateObj,
     (str, value, key)=> {
       // create the string with field = value
-      return [(str || ''), key, '=', value, ' '].join('');
-    });
+      return [str, (str.length > 0) ? ',' : ' ', key, '=', value].join('');
+    }, '');
   let query = ['UPDATE [dbo].[', TABLE_NAME, '] SET ', updateSql, ' WHERE Id=@QueryId'].join('');
+  const stepname = 'update';
 
   // execute
   return sql.getPlainContext(dbconfig)
-    .step('update', {
+    .step(stepname, {
       query: query,
       params: {
         QueryId: {
@@ -125,7 +128,7 @@ const updateById = function (id, updateObj, dbconfig, done) {
     .end(function (data) {
       done(null, {
         pid: process.pid,
-        data: data || {success: true}
+        data: data ? data[stepname] : {success: true}
       });
     })
     .error(function (err) {
