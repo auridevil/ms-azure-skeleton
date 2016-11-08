@@ -1,0 +1,130 @@
+swagger: '2.0'
+info:
+  version: '0.1'
+  title: ms-azure-skeleton
+  description: 'lorem ipsum'
+  termsOfService: 'http://mysite/terms'
+  contact:
+    name: API Support Team
+    url: 'http://mysite/support'
+    email: aureliano.bergese@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: localhost
+basePath: /v1
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  '/ms':
+    post:
+      description: Insert new object of type Temp
+      parameters:
+        - name: _temp
+          in: body
+          description: Details of the temp object
+          required: true
+          schema:
+            $ref: ../models/temp.yaml
+      responses:
+        '201':
+          description: Creation successful
+          headers:
+             location:
+               type: string
+          schema:
+              $ref: ../models/temp.yaml
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+    get:
+      description: List all temps
+      responses:
+        '200':
+          description: List of temps
+          schema:
+            type: array
+            items:
+              $ref: ../models/temp.yaml
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt: [ ]
+  '/ms/{id}':
+    get:
+      description: Retrieves a temp by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the temp to get
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Details of the temp by ID
+          schema:
+            $ref: ../models/temp.yaml
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt: []
+    put:
+      description: Updates an existing temp
+      parameters:
+        - name: id
+          in: path
+          description: ID of the temp to update
+          required: true
+          type: string
+        - name: _temp
+          in: body
+          description: Details of the temp to update
+          required: true
+          schema:
+            $ref: ../models/temp.yaml
+      responses:
+        '200':
+          description: Update successful
+          schema:
+            $ref: ../models/temp.yaml
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt: []
+    delete:
+      description: Removes an existing temp
+      parameters:
+        - name: id
+          in: path
+          description: ID of the temp to delete
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Delete successful
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt: []
+securityDefinitions:
+  jwt:
+    description: 'tbd'
+    type: "apiKey"
+    name: "authorization"
+    in: "header"
+definitions:
+  Admin:
+    $ref: ../models/admin.yaml
