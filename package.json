@@ -14,6 +14,7 @@
     "asynquence": "^0.9.0",
     "asynquence-contrib": "^0.27.0",
     "hapi": "^15.2.0",
+    "json-schema-ref-parser": "^3.1.2",
     "lodash": "^4.16.6",
     "seneca": "^3.2.2",
     "seneca-servicebus-transport": "^0.1.5-dev",

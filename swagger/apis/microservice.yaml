@@ -119,12 +119,12 @@ paths:
             $ref: ../models/errors.yaml
       security:
         - jwt: []
-securityDefinitions:
-  jwt:
-    description: 'tbd'
-    type: "apiKey"
-    name: "authorization"
-    in: "header"
+#securityDefinitions:
+  #jwt:
+  #  description: 'tbd'
+  #  type: "apiKey"
+  #  name: "authorization"
+  #  in: "header"
 definitions:
   Temp:
     $ref: ../models/temp.yaml
