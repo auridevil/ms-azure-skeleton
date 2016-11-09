@@ -5,7 +5,8 @@
   "scripts": {
     "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --captureExceptions api-gw/ microservice/",
     "test-dbg": "node $NODE_DEBUG_OPTION node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --captureExceptions api-gw/ microservice/",
-    "test-ci": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --noColor --junitreport --output test-reports --forceexit --captureExceptions api-gw/ microservice/"
+    "test-ci": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --verbose --noColor --junitreport --output test-reports --forceexit --captureExceptions api-gw/ microservice/",
+    "validate": "node node_modules/swagger-cli/bin/swagger.js validate \\{} \\; "
   },
   "author": "Aureliano Bergese aureliano.bergese-github@gmail.com",
   "license": "MIT",
@@ -22,7 +23,8 @@
   "devDependencies": {
     "jasmine": "^2.5.2",
     "jasmine-node": "^1.14.5",
-    "seriate.mock": "git://github.com/auridevil/seriate.mock.git"
+    "seriate.mock": "git://github.com/auridevil/seriate.mock.git",
+    "swagger-cli": "^1.0.0-beta.2"
   },
   "engines": {
     "node": "6.6"

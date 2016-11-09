@@ -126,5 +126,5 @@ securityDefinitions:
     name: "authorization"
     in: "header"
 definitions:
-  Admin:
-    $ref: ../models/admin.yaml
+  Temp:
+    $ref: ../models/temp.yaml

@@ -1,0 +1,26 @@
+type: object
+required:
+  - name
+  - description
+properties:
+  id:
+    description: id of the object
+    type: string
+  name:
+    description: name of the temp
+    type: string
+    minLength: 0
+    maxLength: 120
+  activation:
+    type: string
+    format: date
+    minLength: 0
+  description:
+    type: string
+    minLength: 0
+    maxLength: 120
+    description: desciption of the temp
+  enabled:
+    description: temp enalbed
+    default: true
+    type: boolean
