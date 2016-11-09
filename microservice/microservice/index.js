@@ -7,9 +7,6 @@
 const SRV_NAME = process.env.SRV_NAME || 'microservice';
 const pluginLoader = require('./plugin.js');
 
-// TODO: remove me:
-process.env.SERVICEBUS_CONNECTION_STRING = 'Endpoint=sb://sb-test.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=kDSiu8KIPXHg+JAQSpFN5Rc0ixCI0TDVgaP34HMajDo=';
-
 // configure seneca
 const seneca = require('seneca')({
   strict: {
