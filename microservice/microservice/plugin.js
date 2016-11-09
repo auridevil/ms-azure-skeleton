@@ -16,8 +16,7 @@ module.exports = function (options) {
   const TRANSPORT_CONNECTION = options.connection_string;
   // actions path
   const ACTS_PATH = path.join(__dirname, '/actions');
-  // models path
-  const MODELS_PATH = path.join(__dirname, '/models');
+
   // access to db
   const dbconfig = {
     'name': 'connection',
@@ -26,13 +25,6 @@ module.exports = function (options) {
     'password': process.env.DB_PASSWORD,
     'database': process.env.DB_NAME
   };
-
-  // Plugin init, for database connection setup
-  seneca.add({
-    init: SRV_NAME
-  }, function (args, done) {
-    // init step
-  });
 
   // Microservices actions
   fs.readdirSync(ACTS_PATH).forEach(function (file) {
@@ -52,7 +44,8 @@ module.exports = function (options) {
 
     // register the listen, * command is not allowed in azure service bus
     seneca.listen({
-      type: TYPE, pin: ['role:', SRV_NAME, ',cmd:', f].join(''),
+      type: TYPE,
+      pin: ['role:', SRV_NAME, ',cmd:', f].join(''),
       connection_string: TRANSPORT_CONNECTION
     });
 

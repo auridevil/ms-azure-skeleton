@@ -2,6 +2,7 @@
 
 var API_PORT = process.env.API_PORT || 4000;
 var API_HOST = process.env.API_HOST || '0.0.0.0';
+process.env.SERVICEBUS_CONNECTION_STRING = 'Endpoint=sb://sb-test.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=kDSiu8KIPXHg+JAQSpFN5Rc0ixCI0TDVgaP34HMajDo=';
 
 var Hapi = require('hapi');
 var Seneca = require('seneca');
@@ -28,6 +29,7 @@ seneca.use('seneca-servicebus-transport')
   .client({
     type: 'servicebus',
     // pin: 'role:' + process.env.USER,
+    pin: ['role:*,cmd:*'].join(''),
     connection_string: process.env.SERVICEBUS_CONNECTION_STRING
   });
 
